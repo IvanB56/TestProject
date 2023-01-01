@@ -41,7 +41,7 @@
                 <form>
                     <div class="input-group">
                         <label>
-                            <input type="text" name="phone" maxlength="12" placeholder="+7 (999) 999-99-99">
+                            <input type="tel" name="phone" placeholder="+7 (999) 999-99-99" value="">
                         </label>
                     </div>
                     <div class="submit">
