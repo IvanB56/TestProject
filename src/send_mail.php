@@ -1,21 +1,24 @@
 <?php
 
-if (isset($_POST['phone'])) {
+if (isset($_POST['phone']) && strlen($_POST['phone'])) {
     $phone = htmlspecialchars($_POST['phone']);
     $phone = urldecode($phone);
     $phone = trim($phone);
 
+    $EOL = "\r\n";
+    $boundary = "--" . md5(uniqid(time()));
+    $mailTo = "vano56@orsk.ru";
+    $them = "Заявка с сайта";
+    $message = "Phone: " . $phone . $EOL;
+    $headers = "MIME-Version: 1.0;" . $EOL;
+    $headers .= "Content-Type: multipart/mixed; boundary=\"" . $boundary . "\"" . $EOL;
+    $headers .= "From: Иван <burak-ivan@mail.ru>";
 
-    $to = "gluk-pop@mail.ru";
-    $them = "Заявка с` сайта";
-    $message = "Phone: ".$phone."<br>";
-
-
-    if (mail($to, $them, $message)) {
-        echo "сообщение успешно отправлено";
+    if (mail($mailTo, $them, $message, $headers)) {
+        echo json_encode('сообщение успешно отправлено');
     } else {
-        echo "при отправке сообщения возникли ошибки";
+        echo json_encode('при отправке сообщения возникли ошибки');
     }
 } else {
-    echo "Телефон не введен";
+    echo json_encode('Телефон не введен');
 }
