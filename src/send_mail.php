@@ -7,12 +7,11 @@ if (isset($_POST['phone']) && strlen($_POST['phone'])) {
 
     $EOL = "\r\n";
     $boundary = "--" . md5(uniqid(time()));
-    $mailTo = "vano56@orsk.ru";
+    $mailTo = "gluk-pop@mail.ru";  // почтовый ящик получателя
     $them = "Заявка с сайта";
     $message = "Phone: " . $phone . $EOL;
     $headers = "MIME-Version: 1.0;" . $EOL;
-    $headers .= "Content-Type: multipart/mixed; boundary=\"" . $boundary . "\"" . $EOL;
-    $headers .= "From: Иван <burak-ivan@mail.ru>";
+    $headers .= "From: example@mail.ru"; // Указать почтовый ящик из настроек сервера
 
     if (mail($mailTo, $them, $message, $headers)) {
         echo json_encode('сообщение успешно отправлено');
