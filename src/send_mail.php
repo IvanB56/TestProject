@@ -1,12 +1,12 @@
 <?php
 
-if (isset($_POST['phone']) && strlen($_POST['phone'])) {
+$phone = isset($_POST['phone']) ? trim($_POST['phone']) : '';
+
+if (strlen($phone)) {
     $phone = htmlspecialchars($_POST['phone']);
     $phone = urldecode($phone);
-    $phone = trim($phone);
 
     $EOL = "\r\n";
-    $boundary = "--" . md5(uniqid(time()));
     $mailTo = "gluk-pop@mail.ru";  // почтовый ящик получателя
     $them = "Заявка с сайта";
     $message = "Phone: " . $phone . $EOL;
